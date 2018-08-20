@@ -1,0 +1,42 @@
+clear all
+close all
+
+%define function
+f = @(x)x^3-6*x^2+11*x-6;
+
+%user inputs
+a = input('Input a : ');
+b = input('Input b : ');
+eps = input('Enter tolerance : '); %define tolerance
+
+g = @(x)x^3-6*x^2+12*x-6;
+h = @(x)(1/11)*(-x^3+6*x^2+6);
+
+x(1)=input('Enter initial point: ');
+i=1;
+if abs((g(b)-g(a))/(b-a))<1
+ while abs(f(x(i)))>=eps
+    x(i+1)=g(x(i));
+    m(i)=i;
+    n(i)=(g(x(i))-x(i));
+    i=i+1;
+    plot(m,n,m,n,'o')
+    grid on
+    xlabel('No. of iteration');
+    ylabel('f(x)');
+ end
+else
+    
+    while abs(f(x(i)))>=eps
+    x(i+1)=h(x(i));
+    m(i)=i;
+    n(i)=(h(x(i))-x(i));
+    i=i+1;
+    plot(m,n,m,n,'o')
+    grid on
+    xlabel('No. of iteration');
+    ylabel('f(x)');
+    end
+ end
+
+fprintf('The root of f(x) in the given interval is %i',x(i))
