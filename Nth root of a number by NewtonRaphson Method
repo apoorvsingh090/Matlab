@@ -1,0 +1,27 @@
+clear all
+close all
+
+a=input('enter number');
+%nth Root
+n=input('Enter root\n');
+%define function
+f = @(x)x^n-a;
+f1 = @(x)n.*x^(n-1);
+eps = input('Enter tolerance\n'); %define tolerance
+x(1)=2;
+i=1;
+delx = 1;
+
+ while delx>=eps
+    x(i+1)=x(i)-(f(x(i))/f1(x(i)));
+    delx = abs((x(i+1)-x(i))/(x(i)));
+    
+    plot(i,delx);
+    grid on
+    xlabel('No. of iteration');
+    ylabel('error');
+    i=i+1;
+ end
+
+fprintf('The root of f(x) in the given interval is %i',x(i));
+
